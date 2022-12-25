@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+}
+
+.container-panzoom {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.panzoom-content {
+  position: relative;
+}
+
+.container-info {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  padding: 1.5em;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1em;
+  border-radius: .6em;
+}

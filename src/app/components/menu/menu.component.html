@@ -1,0 +1,9 @@
+<div class="container-menu">
+  <div class="container-menu-item" *ngFor="let item of items;">
+    <div class="menu-item-text tooltip" (click)="item.invokeMethod()">
+      <span class="material-icons" toggleFullscreen *ngIf="item.fullscreen">{{item.icon}}</span>
+      <span class="material-icons" *ngIf="!item.fullscreen">{{item.icon}}</span>
+      <span class="tooltiptext">{{item.tooltip}}</span>
+    </div>
+  </div>
+</div>

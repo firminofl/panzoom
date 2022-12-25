@@ -1,0 +1,58 @@
+.container-menu {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 114px;
+  height: calc(100vh - 30px);
+  background-color: #494949;
+  z-index: 10;
+}
+
+.container-menu-item {
+  /*background-color: inherit;*/
+  background-color: #0B877D;
+  margin: 4px;
+  width: 105px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu-item-text {
+  color: #FFF;
+  margin: 36px 4px 12px 4px;
+  text-align: center;
+  vertical-align: center;
+  line-height: 12px;
+  letter-spacing: 0;
+  font-weight: 700;
+  font-family: "Roboto Light";
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 500px;
+  background-color: black;
+  opacity: 70%;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 2px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
