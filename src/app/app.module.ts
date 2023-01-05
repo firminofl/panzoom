@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {NgxPanZoomModule} from "ngx-panzoom";
-import { FullscreenDirective } from './directives/fullscreen/fullscreen.directive';
 import { RounderPipe } from './pipes/rounder/rounder.pipe';
 import {MenuModule} from "./components/menu/menu.module";
 
