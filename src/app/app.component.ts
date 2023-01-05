@@ -6,12 +6,14 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  Renderer2, ViewChild
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import {PanZoomAPI, PanZoomConfig, PanZoomConfigOptions, PanZoomModel} from "ngx-panzoom";
 import {Subscription} from "rxjs";
 import {deepCopy, getCssScale} from './utils/deep-copy';
 import {IMenu} from "./components/menu/menu.component";
+declare var ruler: any;
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ import {IMenu} from "./components/menu/menu.component";
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('gridElement', {static: true}) private gridElement: ElementRef | undefined;
+  @ViewChild('stage') private stage: ElementRef | undefined;
 
   menu: IMenu[] = [
     {
@@ -109,6 +112,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   initialZoomWidth = this.canvasWidth;
   initialised = false;
 
+  rulerInstance: any;
+
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
@@ -122,12 +127,30 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.el.nativeElement.ownerDocument.body, 'overflow', 'hidden');
     this.apiSubscription = this.panzoomConfig?.api.subscribe((api: PanZoomAPI) => this.panZoomAPI = api);
     this.modelChangedSubscription = this.panzoomConfig.modelChanged.subscribe((model: PanZoomModel) => this.onModelChanged(model));
+
+    this.rulerInstance = new ruler({
+      container: this.stage?.nativeElement,// reference to DOM element to apply rulers on
+      rulerHeight: 21, // thickness of ruler
+      fontFamily: 'arial',// font for points
+      fontSize: '10px',
+      strokeStyle: 'black',
+      lineWidth: 1,
+      enableMouseTracking: true,
+      enableToolTip: true,
+      scale: this.scale
+    });
+    this.setScale();
   }
 
   ngAfterViewInit(): void {
     this.resetZoomToFit();
     this.initialised = true;
     this.changeDetector.detectChanges();
+    this.setScale();
+  }
+
+  setScale(){
+    this.rulerInstance?.api.setScale(this.scale);
   }
 
   ngOnDestroy(): void {
@@ -142,6 +165,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.scale = getCssScale(this.panzoomModel?.zoomLevel, this.panzoomConfig?.scalePerZoomLevel, this.panzoomConfig?.neutralZoomLevel);
     this.changeDetector.markForCheck();
     this.changeDetector.detectChanges();
+    this.setScale();
   }
 
   resetZoomToFit(): void {

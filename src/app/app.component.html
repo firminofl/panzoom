@@ -1,13 +1,11 @@
 <div #gridElement id="gridElement" class="container">
   <app-menu [items]="menu"></app-menu>
-
+  <div #stage id="stage"></div>
   <div *ngIf="initialised" class="container-panzoom">
     <pan-zoom [config]="panzoomConfig">
-
       <div
         class="panzoom-content"
-        [style.width.px]="2400"
-      >
+        [style.width.px]="2400">
         <img [src]="'assets/sydney.jpg'" alt="">
       </div>
 
