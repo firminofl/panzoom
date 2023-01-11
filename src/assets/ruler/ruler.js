@@ -363,6 +363,7 @@ ruler.prototype.rulerConstructor =  function(_canvas, options, rulDimension)
         context.strokeStyle = options.strokeStyle;
         context.font = options.fontSize + ' ' + options.fontFamily;
         context.lineWidth = options.lineWidth;
+        context.fillStyle = options.fontColor;
         context.beginPath();
         drawPoints();
         context.stroke();

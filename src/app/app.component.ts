@@ -133,7 +133,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       rulerHeight: 21, // thickness of ruler
       fontFamily: 'arial',// font for points
       fontSize: '10px',
-      strokeStyle: 'black',
+      strokeStyle: '#C0C0C0',
+      fontColor: '#C0C0C0',
       lineWidth: 1,
       enableMouseTracking: true,
       enableToolTip: true,
